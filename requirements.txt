@@ -1,0 +1,4 @@
+numpy==1.26.0
+pandas==2.3.3
+ipykernel==6.28.0
+scikit-learn==1.8.0
