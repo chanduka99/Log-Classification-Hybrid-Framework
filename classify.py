@@ -44,28 +44,36 @@ def classify_log(source, log_msg):
     return label
 
 
-def classify_csv(file_path):
-    """Classify logs in a CSV file and write output to resources/output.csv.
+def classify_csv(file_path_or_buffer):
+    """Classify logs in a CSV file or buffer and return the classified DataFrame.
 
     Args:
-        file_path: Path to the input CSV file. The CSV must contain
-            columns named "source" and "log_message".
+        file_path_or_buffer: Path to the input CSV file or a file-like buffer.
 
     Returns:
-        The path to the generated output CSV file.
+        A pandas DataFrame with an additional "target_label" column.
     """
-    df = pd.read_csv(file_path)
+    df = pd.read_csv(file_path_or_buffer)
     df["target_label"] = classify(list(zip(df["source"], df["log_message"])))
+    return df
 
-    output_file = "resources/output.csv"
+
+def save_classified_csv(df, output_file="resources/output.csv"):
+    """Save the classified DataFrame to a CSV file.
+
+    Args:
+        df: The classified DataFrame.
+        output_file: Path to the output CSV file.
+    """
     df.to_csv(output_file, index=False)
-    return output_file
 
 
 def main():
     """Run a simple test of classify_csv using resources/test.csv."""
     input_file = "resources/test.csv"
-    output_file = classify_csv(input_file)
+    df = classify_csv(input_file)
+    output_file = "resources/output.csv"
+    save_classified_csv(df, output_file)
     print(f"Classified logs written to: {output_file}")
 
 
