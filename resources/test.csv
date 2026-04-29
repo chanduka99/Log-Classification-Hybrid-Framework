@@ -1,6 +1,6 @@
 source,log_message
 ModernCRM, "IP 192.168.133.114 blocked due to potential attack"
-BillingSystem, "User 12345 logged in."
+BillingSystem, "User User12345 logged in."
 AnalyticsEngine, "File data_6957.csv uploaded successfully by user User265."
 AnalyticsEngine, "Backup completed successfully."
 ModernHR, "GET /v2/54fadb412c4e40cdbaed9335e4c35a9e/servers/detail HTTP/1.1 RCODE  200 len: 1583 time: 0.1878400"
